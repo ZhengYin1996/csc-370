@@ -1,0 +1,141 @@
+DROP TABLE IF EXISTS public.users;
+DROP TABLE IF EXISTS public.student;
+DROP TABLE IF EXISTS public.teacher;
+DROP TABLE IF EXISTS public.worksheet;
+DROP TABLE IF EXISTS public.question;
+DROP TABLE IF EXISTS public.doWork;
+DROP TABLE IF EXISTS public.contain;
+DROP TABLE IF EXISTS public.creater;
+
+CREATE TABLE users(
+                userID  int PRIMARY KEY,
+                connection      char(255),
+                language        char(255) NOT NULL,
+                registerTime    char(255) NOT NULL
+                        );
+CREATE TABLE student(
+                SID int PRIMARY KEY,
+				Levels  varchar(2) NOT NULL,
+                sCommits char(255)
+                );
+CREATE TABLE teacher(
+                TID     int PRIMARY KEY,
+                availibity      char(3) NOT NULL
+                );
+create table worksheet(
+                WSID    int PRIMARY KEY,
+                grade   int NOT NULL,
+                wLevels  char(2) NOT NULL,                                                                                              wCommits char(255) NOT NULL
+                );                                                                                                      create table question(
+                      QID     int primary key,                                                                                                quest   char(255) NOT NULL,
+                            solution        char(255) not null,
+                category        char(255) not null,
+                creator char(255)                                                                                                       );
+create table doWork(
+                SID     int,
+                WSID    int,
+                time    char(255),
+                primary key(SID,WSID)                                                                                                   );
+create table contain(
+                WSID    int,
+                QID     int,
+                conTime char(255),
+                primary key(WSID,QID)
+                );
+create table creater(
+                TID     int,
+                QID    int,
+                creTime char(255),
+                primary key(TID,QID)
+                );
+
+      insert into users(userID,connection,language,registerTime)                                                              values
+
+      (10000001, 'question@uvic.ca', 'english','2010-3-4'),
+
+      (20000021, 'trump@google.com', 'english','2016-12-4'),
+
+      (20000063, 'tianmi@uvic.ca', 'chinese','2014-5-4'),
+
+       (20000082, 'student2@uvic.ca', 'french','2018-3-7'),
+
+      (20000131, 'jotaro@uvic.ca', 'japenes','2019-3-28');
+
+
+      insert into teacher(TID,availibity)
+
+      values
+
+      (10000001,'yes');
+
+
+      insert into student(SID,Levels,sCommits)
+
+      values
+
+	  (20000021, '1', 'MAGA'),
+
+      (20000063, '12', 'computer student'),
+
+      (20000082, '14', 'nothing'),
+
+      (20000131, '10', 'oura,oura,oura');
+
+
+      insert into worksheet(WSID, grade, wLevels, wCommits)
+
+      values
+
+      (40010001,86, '10', 'q4 and q5 use wrong function'),
+
+      (40001001,100, '1', 'do not use pen'),
+
+      (40012002,20, '12', 'please read the question'),
+
+      (40014010,0,'14', 'donot forget to do the question');
+
+
+      insert into question(QID,quest,solution,category,creator)
+
+      values
+
+      (70001002,'1+1=?', '2', 'math','null'),
+
+      (70014010, 'dy/dx = x^2+2, y=?','y = 1/3x^3+2x+C','calculus','question');
+
+
+
+      insert into dowork (SID,WSID,time)
+
+      values
+
+      (20000021,40001001, '2019-2-1'),
+
+      (20000063,40012002, '2019-3-1'),
+
+      (20000082, 40014010, '2019-4-1'),
+
+      (20000131, 40010001, '2019-5-1');
+
+
+
+      insert into contain(WSID,QID,conTime)
+
+      values
+
+      (40001001, 70001002, '2019-1-1'),
+
+      (40014010, 70014010, '2019-1-1');
+
+
+      insert into creater(TID,QID,creTime)
+
+      values
+
+      (10000001,70014010,'2018-1-1');
+	  
+	  
+SELECT sCommits From student;
+SELECT * From worksheet where grade>50;
+SELECT * From user where connection like '%uvic%';
+              
